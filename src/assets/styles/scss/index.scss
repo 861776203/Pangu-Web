@@ -1,0 +1,16 @@
+.table_box {
+    width: 200px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    position: absolute;
+    border: 3px solid rgb(148, 197, 69);
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    .table_name {
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        cursor: pointer;
+    }
+}
