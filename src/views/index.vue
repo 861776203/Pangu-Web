@@ -1,9 +1,9 @@
 <template>
     <div>
         <div v-for="(item,index) in tableList" :key="index" class="table_box" :style="{'left': item.x+'px', 'top': item.y+'px'}" @dblclick="showInfo(item)">
-            <div class="table_name" @mousedown="moveStart($event,item)" @mouseup="moveEnd">{{ item.table_name }}</div>
-            <SortableList v-model="item.info" axis="y" lock-axis="y" @sort-end="onSortEnd($event, item)">
-                <SortableItem v-for="(item2,index2) in item.info" :key="index2" :index="index2" :item="item2" />
+            <div class="table_name" @mousedown="moveStart($event,item)" @mouseup="moveEnd">{{ item.name }}</div>
+            <SortableList v-model="item.table_list" axis="y" lock-axis="y" @input="onChange(index)">
+                <SortableItem v-for="(item2,index2) in item.table_list" :key="index2" :index="index2" :item="item2" />
             </SortableList>
         </div>
     </div>
@@ -17,11 +17,7 @@ export default {
         }
     },
     created() {
-        this.$api.get('tables/info', {
-            params: {
-                name: 'node_demo'
-            }
-        }).then(res => {
+        this.$api.get('tables/info').then(res => {
             this.tableList = res.data
         })
     },
@@ -45,14 +41,13 @@ export default {
         showInfo(item) {
             console.log(item)
         },
-        onSortEnd(e, item) {
-            console.log(e, item)
-            // this.$api.get('tables/change_tablesort', {
-            //     params: {
-            //         table_name: item.table_name
-
-            //     }
-            // })
+        onChange(index) {
+            this.$api.post('tables/move_column', {
+                table_name: this.tableList[index].name,
+                table_list: JSON.stringify(this.tableList[index].table_list)
+            }).then(res => {
+                console.log(res)
+            })
         }
     }
 }
