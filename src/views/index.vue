@@ -1,11 +1,12 @@
 <template>
     <div>
-        <div v-for="(item,index) in tableList" :key="index" class="table_box" :style="{'left': item.x+'px', 'top': item.y+'px'}" @dblclick="showInfo(item)">
-            <div class="table_name" @mousedown="moveStart($event,item)" @mouseup="moveEnd">{{ item.name }}</div>
+        <div v-for="(item,index) in tableList" :key="index" class="table_box" :style="{'left': item.x+'px', 'top': item.y+'px'}">
+            <div class="table_name" @mousedown="moveStart($event,item)" @mouseup="moveEnd" @dblclick="showInfo(item)">{{ item.name }}</div>
             <SortableList v-model="item.table_list" axis="y" lock-axis="y" @input="onChange(index)">
                 <SortableItem v-for="(item2,index2) in item.table_list" :key="index2" :index="index2" :item="item2" />
             </SortableList>
         </div>
+        <TableDialog />
     </div>
 </template>
 

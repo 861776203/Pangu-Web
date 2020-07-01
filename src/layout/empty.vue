@@ -2,6 +2,7 @@
     <div>
         <div class="header">
             <div @click="save">保存</div>
+            <div @click="createTable">新建</div>
         </div>
         <RouterView />
     </div>
@@ -17,6 +18,9 @@ export default {
                     list: JSON.stringify(this.$store.state.index.tableList)
                 })
             }
+        },
+        createTable() {
+            this.$store.dispatch('index/setDialog', true)
         }
     }
 }
@@ -30,9 +34,11 @@ export default {
     position: fixed;
     top: 0;
     left: 0;
+    display: flex;
     div {
         color: white;
         cursor: pointer;
+        margin-right: 30px;
     }
 }
 </style>
