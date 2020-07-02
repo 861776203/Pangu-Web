@@ -18,9 +18,7 @@ export default {
         }
     },
     created() {
-        this.$api.get('tables/info').then(res => {
-            this.tableList = res.data
-        })
+        this.getTableInfo()
     },
     methods: {
         moveStart(e, item) {
@@ -48,6 +46,11 @@ export default {
                 table_list: JSON.stringify(this.tableList[index].table_list)
             }).then(res => {
                 console.log(res)
+            })
+        },
+        getTableInfo() {
+            this.$api.get('tables/info').then(res => {
+                this.tableList = res.data
             })
         }
     }
