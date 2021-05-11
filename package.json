@@ -15,7 +15,7 @@
         "core-js": "^3.6.4",
         "dayjs": "^1.8.19",
         "element-ui": "^2.13.2",
-        "lodash": "^4.17.15",
+        "lodash": "^4.17.21",
         "nprogress": "^0.2.0",
         "vue": "^2.6.11",
         "vue-cookies": "^1.6.1",
